@@ -109,10 +109,39 @@ class tictactoe(Resource):
 
         Returns:
           [list] -- recommended move 
+
+        //if win this turn to play winning move
         """
         new_board = list(board)
         empty_spaces = [iterator for iterator,
                         item in enumerate(new_board) if not item.isalpha()]
+        #list of indicies
+        o_spaces = [iterator for iterator,item in enumerate(board) if item == 'o']
+        x_spaces = [iterator for iterator,item in enumerate(board) if item == 'x']
+
+        winning_combos = [[6, 7, 8], [3, 4, 5], [0, 1, 2], [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                          [0, 4, 8], [2, 4, 6]]
+
+        good_combo = []
+
+        for combo in winning_combos:
+            for item in o_spaces:
+                if item in combo:
+                    good_combo.append(combo)
+                    if good_combo.count(combo) == 2:
+                        print combo
+                        for x in combo:
+                            if x in empty_spaces:
+                                return [x]
+                        # if item in combo and item in empty_spaces:
+                            # return item
+                    # print good_combo.count(combo)
+                    # print item, combo
+                    
+
+
+                    
+
         return empty_spaces
 
 api.add_resource(tictactoe, '/')
