@@ -39,12 +39,11 @@ class tictactoe(Resource):
         Returns:
           bool -- True if valid board
         """
-        o_spaces = [iterator for iterator,
-                    item in enumerate(board) if item == 'o']
-        x_spaces = [iterator for iterator,
-                    item in enumerate(board) if item == 'x']
         if board is None:
             return False
+        else:
+          o_spaces = [iterator for iterator,item in enumerate(board) if item == 'o']
+          x_spaces = [iterator for iterator,item in enumerate(board) if item == 'x']
         if len(board) > 9 or len(board) < 9:
             return False
         if self.is_winning_combo(board):
